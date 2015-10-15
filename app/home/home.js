@@ -9,9 +9,11 @@ angular.module('myApp.home', ['ngRoute','firebase'])
   });
 }])
 
-.controller('HomeCtrl', ['$scope','$location','CommonProp','$firebaseAuth',function($scope,$location,CommonProp,$firebaseAuth) {
- 
+.controller('HomeCtrl', ['$scope','$location','CommonProp','$firebaseAuth', '$auth',function($scope,$location,CommonProp,$firebaseAuth, $auth) {
 
+        $scope.authenticate = function(provider) {
+            $auth.authenticate(provider);
+        };
 
  var firebaseObj = new Firebase("https://blistering-heat-2473.firebaseio.com");
     var loginObj = $firebaseAuth(firebaseObj);

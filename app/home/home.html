@@ -35,7 +35,7 @@
           <a href="#/register"> Sign Up</a>
         </label>
         <button ladda-loading="login.loading" data-style="expand-right" ng-disabled="!user.email || !user.password" type="button" ng-click="SignIn($event)" class="btn btn-lg segoe-ui-light ladda-button btn-primary btn-block"><span class="ladda-label">Sign In</span></button>
-
+          <button ng-click="authenticate('twitter')">Sign in with Twitter</button>
 
 	
 

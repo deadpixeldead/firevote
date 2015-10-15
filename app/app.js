@@ -7,7 +7,8 @@ angular.module('myApp', [
   'myApp.register',
   'myApp.welcome',
   'myApp.addPost',
-  'myApp.test'
+  'myApp.test',
+  'satellizer'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/home'});
