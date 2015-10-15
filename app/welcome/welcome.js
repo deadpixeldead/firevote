@@ -14,9 +14,9 @@ angular.module('myApp.welcome', ['ngRoute'])
 
    // $scope.username = CommonProp.getUser();
  
-    if(!$scope.username){
-        $location.path('/home');
-    }
+    // if(!$scope.username){
+    //     $location.path('/home');
+    // }
 
     var firebaseObj = new Firebase("https://blistering-heat-2473.firebaseio.com/Articles/");
 

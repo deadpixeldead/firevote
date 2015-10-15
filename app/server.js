@@ -711,7 +711,10 @@ app.post('/auth/twitter', function(req, res) {
         if (req.headers.authorization) {
           User.findOne({ twitter: profile.id }, function(err, existingUser) {
             if (existingUser) {
-              return res.status(409).send({ message: 'There is already a Twitter account that belongs to you' });
+                   console.log(err);
+
+            console.log(existingUser);
+              return res.status(409).send({ message: 'There is already a Twitter account that belongs to you', user: User });
             }
 
             var token = req.headers.authorization.split(' ')[1];
@@ -825,6 +828,13 @@ app.post('/auth/foursquare', function(req, res) {
  | Login with Twitch
  |--------------------------------------------------------------------------
  */
+
+ app.get('/users', function (req,res) {
+
+
+    console.log(User.findOne());
+    return res.status(409).send({ message: 'hello'});
+ });
 app.post('/auth/twitch', function(req, res) {
   var accessTokenUrl = 'https://api.twitch.tv/kraken/oauth2/token';
   var profileUrl = 'https://api.twitch.tv/kraken/user';
@@ -848,6 +858,7 @@ app.post('/auth/twitch', function(req, res) {
       if (req.headers.authorization) {
         User.findOne({ twitch: profile._id }, function(err, existingUser) {
           if (existingUser) {
+       
             return res.status(409).send({ message: 'There is already a Twitch account that belongs to you' });
           }
           var token = req.headers.authorization.split(' ')[1];
@@ -910,6 +921,7 @@ app.post('/auth/unlink', ensureAuthenticated, function(req, res) {
     user[provider] = undefined;
     user.save(function() {
       res.status(200).end();
+
     });
   });
 });

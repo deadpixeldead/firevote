@@ -10,9 +10,29 @@ angular.module('myApp.home', ['ngRoute','firebase', 'satellizer'])
 }])
 
 .controller('HomeCtrl', ['$scope','$location','CommonProp','$firebaseAuth', '$auth',function($scope,$location,CommonProp,$firebaseAuth, $auth) {
+var login={};
+        $scope.loginExpress = function(provider) {
+            // var user = {
+            //   email: $scope.email,
+            //   password: $scope.password
+            // };
+                login.loading = true;
 
-        $scope.authenticate = function(provider) {
-            $auth.authenticate(provider);
+            console.log($scope.user);
+            $auth.login($scope.user)
+            .then(function (reresponses) {
+                        login.loading = false;
+
+                console.log('in success');
+                $location.path('/welcome');
+
+            })
+            .catch(function(response) {
+    // Handle errors here, such as displaying a notification
+    // for invalid email and/or password.
+    console.log(response);
+                $location.path('/welcome');
+  });
         };
 
  var firebaseObj = new Firebase("https://blistering-heat-2473.firebaseio.com");

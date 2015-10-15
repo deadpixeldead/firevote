@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.register', ['ngRoute','firebase'])
+angular.module('myApp.register', ['ngRoute','firebase', 'satellizer'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/register', {
@@ -9,13 +9,31 @@ angular.module('myApp.register', ['ngRoute','firebase'])
   });
 }])
 
-.controller('RegisterCtrl', ['$scope','$location','$firebaseAuth', function($scope,$location,$firebaseAuth) {
+.controller('RegisterCtrl', ['$scope','$location','$firebaseAuth','$auth', function($scope,$location,$firebaseAuth, $auth) {
  	$scope.mesg = 'Hello';
  	var firebaseObj = new Firebase("https://blistering-heat-2473.firebaseio.com");
 var auth = $firebaseAuth(firebaseObj);
 
  var login={};
 $scope.login=login;
+
+ $scope.signUpTwitter = function(provider) {
+      $auth.authenticate(provider);
+    };
+
+        $scope.signUpExpress = function () {
+                $auth.signup($scope.user)
+  .then(function(response) {
+    // Redirect user here to login page or perhaps some other intermediate page
+    // that requires email address verification before any other part of the site
+    // can be accessed.
+  })
+  .catch(function(response) {
+    // Handle errors here.
+  });
+
+        };
+        
 
         $scope.signUp = function() {
     if (!$scope.regForm.$invalid) {
