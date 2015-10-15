@@ -10,6 +10,6 @@ angular.module('myApp', [
   'myApp.test',
   'satellizer'
 ]).
-config(['$routeProvider', function($routeProvider) {
+config(['$routeProvider', '$authProvider', function($routeProvider, $authProvider) {
   $routeProvider.otherwise({redirectTo: '/home'});
 }]);

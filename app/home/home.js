@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.home', ['ngRoute','firebase'])
+angular.module('myApp.home', ['ngRoute','firebase', 'satellizer'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {
